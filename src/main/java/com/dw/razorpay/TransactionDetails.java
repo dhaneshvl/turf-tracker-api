@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransactionDetails {
-
     private String order_id;
+    private String internalOrderId;
+    private int amount;
     private String currency;
-    private Integer amount;
     private String key;
 }

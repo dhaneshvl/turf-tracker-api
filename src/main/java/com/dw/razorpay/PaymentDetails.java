@@ -6,4 +6,6 @@ import lombok.Data;
 public class PaymentDetails {
     private String payment_id;
     private String order_id;
+    private String status;
+    private String message;
 }
