@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/payment")
+@RequestMapping("api/v1/payment")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PaymentController {
 

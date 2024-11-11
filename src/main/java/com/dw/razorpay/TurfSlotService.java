@@ -1,6 +1,5 @@
 package com.dw.razorpay;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -13,12 +12,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class TurfSlotService {
-
-    @Autowired
-    private TurfSlotRepository turfSlotRepository;
-
-    @Autowired
-    private TransactionRepository transactionRepository;
+    private final TurfSlotRepository turfSlotRepository;
+    private final TransactionRepository transactionRepository;
+    public TurfSlotService(TurfSlotRepository turfSlotRepository, TransactionRepository transactionRepository) {
+        this.turfSlotRepository = turfSlotRepository;
+        this.transactionRepository = transactionRepository;
+    }
 
     public List<TurfSlot> getTurfSlotsByTurfId(Long turfId, String slotDate) {
         LocalDate selectedSlotDate = LocalDate.parse(slotDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
@@ -28,7 +27,6 @@ public class TurfSlotService {
                         .map(String::trim)
                         .map(Long::valueOf))
                 .collect(Collectors.toSet());
-        System.out.println(sealedSlots);
 
         return turfSlotRepository.findByTurfId(turfId).stream()
                 .peek(turfSlot -> {
